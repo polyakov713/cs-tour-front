@@ -11,18 +11,18 @@ import { TheHeader } from '@/widgets/header'
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
 
-.app__header {
-  flex-shrink: 0;
-}
+  &__header {
+    flex-shrink: 0;
+  }
 
-.app__main {
-  flex-grow: 1;
+  &__main {
+    flex-grow: 1;
+  }
 }
 </style>
