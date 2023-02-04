@@ -1,11 +1,10 @@
 :root {
-  --background-base: #F5F5F6;
-  --color-primary: #3d518c;
-  --color-primary-light: #6d7dbc;
-  --color-primary-dark: #01295e;
-  --color-secondary: #8de969;
-  --color-secondary-light: #c1ff9a;
-  --color-secondary-dark: #59b639;
+  --color-bg: #2b2e39;
+  --color-bg-dark: #252731;
+  --color-text: #a2a3ac;
+  --color-white: #ffffff;
+  --color-black: #1c1d24;
+  --color-accent: #97ed4c;
 }
 
 :root {
@@ -14,8 +13,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color: #000;
-  background-color: var(--background-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

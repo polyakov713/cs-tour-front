@@ -23,6 +23,7 @@ import { TheHeader } from '@/widgets/header'
 
   &__main {
     flex-grow: 1;
+    padding: 20px;
   }
 }
 </style>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { AppLogo } from '@/shared/ui/app-logo'
+import { AppLogo } from '@/shared/ui/logo'
+import { AppButton } from '@/shared/ui/button'
 </script>
 
 <template>
@@ -10,7 +11,7 @@ import { AppLogo } from '@/shared/ui/app-logo'
       </router-link>
     </div>
     <div class="header__right">
-      right
+      <AppButton>Sign in</AppButton>
     </div>
   </header>
 </template>
@@ -23,6 +24,6 @@ import { AppLogo } from '@/shared/ui/app-logo'
   justify-content: space-between;
 
   color: #fff;
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-bg-dark);
 }
 </style>
