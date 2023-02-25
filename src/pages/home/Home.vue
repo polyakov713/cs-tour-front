@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { AppInput } from '@/shared/ui/input'
+import { AppField } from '@/shared/ui/field'
 
 const text = ref('')
 </script>
@@ -9,6 +9,6 @@ const text = ref('')
 <template>
   <article class="home-page">
     <h1>Home</h1>
-    <AppInput v-model="text" placeholder="qwe" />
+    <AppField v-model="text" placeholder="qwe" id="text" class="text" label="text" :disabled="false" />
   </article>
 </template>
