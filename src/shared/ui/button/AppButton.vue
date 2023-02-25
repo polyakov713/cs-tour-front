@@ -39,7 +39,7 @@ const classes = computed(() => [
   font-weight: 600;
   color: var(--color-black);
 
-  background-color: var(--color-accent);
+  background-color: var(--color-green);
   border: none;
   border-radius: 4px;
   cursor: pointer;
