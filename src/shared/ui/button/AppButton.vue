@@ -5,6 +5,7 @@ interface Props {
   size?: 'small' | 'medium' | 'large'
   kind?: 'default' | 'text'
   type?: 'button' | 'submit'
+  width?: string | number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -17,6 +18,8 @@ const classes = computed(() => [
   `app-button--size--${props.size}`,
   `app-button--kind--${props.kind}`,
 ])
+
+const width = computed(() => typeof props.width === 'number' ? `${props.width}px` : props.width)
 </script>
 
 <template>
@@ -24,6 +27,7 @@ const classes = computed(() => [
     :type="type"
     class="app-button"
     :class="classes"
+    :style="{ width: width }"
   >
     <span class="app-button__wrapper">
       <slot />
@@ -34,10 +38,14 @@ const classes = computed(() => [
 <style scoped lang="postcss">
 .app-button {
   position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
   font-size: inherit;
   font-weight: 600;
   color: var(--color-black);
+  text-align: center;
 
   background-color: var(--color-green);
   border: none;

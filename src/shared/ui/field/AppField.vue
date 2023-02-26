@@ -51,5 +51,9 @@ const componentClasses = computed(() => ({
     padding-bottom: 8px;
     cursor: pointer;
   }
+
+  &__input {
+    width: 100%;
+  }
 }
 </style>

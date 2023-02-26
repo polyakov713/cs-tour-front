@@ -1,6 +1,14 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+
 import { AppLogo } from '@/shared/ui/logo'
 import { AppButton } from '@/shared/ui/button'
+
+const router = useRouter()
+
+function goToSignIn() {
+  router.push({ name: 'sign-in' })
+}
 </script>
 
 <template>
@@ -11,7 +19,7 @@ import { AppButton } from '@/shared/ui/button'
       </router-link>
     </div>
     <div class="header__right">
-      <AppButton>Sign in</AppButton>
+      <AppButton @click="goToSignIn">Sign in</AppButton>
     </div>
   </header>
 </template>
