@@ -3,18 +3,27 @@ import { reactive } from 'vue'
 
 import { AppField } from '@/shared/ui/field'
 import { AppButton } from '@/shared/ui/button'
+
+import { useSignInCore } from '../composables/sign-in-core'
 import type { SignInFormData } from '../types'
 
-const emit = defineEmits(['submit'])
+const emit = defineEmits(['sign-in'])
 
 const formData = reactive<SignInFormData>({
   username: '',
   password: '',
 })
 
-function onSubmit() {
-  console.log('onSubmit')
-  emit('submit', formData)
+const { submitFormHandler } = useSignInCore()
+
+async function onSubmit() {
+  try {
+    await submitFormHandler(formData)
+
+    emit('sign-in')
+  } catch (err) {
+    console.error('SignInForm error:', err)
+  }
 }
 </script>
 

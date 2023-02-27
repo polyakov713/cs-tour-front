@@ -1,4 +1,5 @@
-import { Client } from './client'
+import type { AxiosInstance } from 'axios'
+import { getClient } from './client'
 
 interface LocationParams {
   backendURL: string
@@ -6,15 +7,15 @@ interface LocationParams {
   path: string
 }
 
-interface AdditionalClientParams {
+export interface AdditionalClientParams {
   timeout: number
 }
 
 export class BaseApi {
-  client: Client
+  client: AxiosInstance
 
   constructor({ backendURL, apiVersion, path }: LocationParams, clientParams?: AdditionalClientParams) {
-    this.client = new Client({
+    this.client = getClient({
       baseURL: `${backendURL}${apiVersion}/${path}`,
       timeout: clientParams?.timeout,
     })

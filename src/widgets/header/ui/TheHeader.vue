@@ -3,8 +3,11 @@ import { useRouter } from 'vue-router'
 
 import { AppLogo } from '@/shared/ui/logo'
 import { AppButton } from '@/shared/ui/button'
+import { useAuthData } from '@/processes/auth'
 
 const router = useRouter()
+
+const { isAuthorized } = useAuthData()
 
 function goToSignIn() {
   router.push({ name: 'sign-in' })
@@ -19,7 +22,13 @@ function goToSignIn() {
       </router-link>
     </div>
     <div class="header__right">
-      <AppButton @click="goToSignIn">Sign in</AppButton>
+      <span v-if="isAuthorized">username</span>
+      <AppButton
+        v-else
+        @click="goToSignIn"
+      >
+        Sign in
+      </AppButton>
     </div>
   </header>
 </template>

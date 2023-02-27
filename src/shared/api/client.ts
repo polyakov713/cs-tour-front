@@ -6,23 +6,21 @@ interface ClientParams {
   timeout?: number
 }
 
-export class Client {
-  instance: AxiosInstance
+export function getClient({ baseURL, timeout }: ClientParams): AxiosInstance {
+  const instance = axios.create({
+    baseURL,
+    timeout,
+  })
 
-  constructor({ baseURL, timeout }: ClientParams) {
-    this.instance = axios.create({
-      baseURL,
-      timeout,
-    })
+  instance.interceptors.request.use((config) => {
+    const accessToken = localStorage.getItem('accessToken');
 
-    this.instance.interceptors.request.use((config) => {
-      const accessToken = localStorage.getItem('accessToken');
-  
-      if (accessToken) {
-        config.headers.Authorization = `Bearer ${accessToken}`;
-      }
-  
-      return config;
-    }, (error) => Promise.reject(error));
-  }
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+
+    return config;
+  }, (error) => Promise.reject(error))
+
+  return instance
 }
