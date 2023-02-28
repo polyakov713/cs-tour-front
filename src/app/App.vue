@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import { TheHeader } from '@/widgets/header'
+import { useAuthProcess } from '@/processes/auth'
+
+function initApp() {
+  useAuthProcess()
+
+  console.log('App is inited!')
+}
+
+initApp()
 </script>
 
 <template>

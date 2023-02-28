@@ -1,5 +1,3 @@
-import { tokenApi } from '@/shared/api/token'
-import type { TokenPair } from '@/shared/api/token'
 import { useAuthData } from '@/processes/auth'
 
 import type { SignInFormData } from '../types'

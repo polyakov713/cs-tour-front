@@ -5,13 +5,12 @@ export function useAuthData() {
   const authStore = useAuthStore()
 
   const isAuthorized = computed(() => authStore.isAuthorized)
-  const accessTokenIsExpired = computed(() => authStore.accessTokenIsExpired)
 
-  const { signIn } = authStore
+  const { signIn, checkAuthState } = authStore
 
   return {
     isAuthorized,
-    accessTokenIsExpired,
     signIn,
+    checkAuthState,
   }
 }

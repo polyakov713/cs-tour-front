@@ -8,7 +8,7 @@ export interface TokenPair {
   refresh: string
 }
 
-export interface AccessTokenDecoded {
+export interface TokenDecoded {
   exp: number
   iat: number
   jti: string
