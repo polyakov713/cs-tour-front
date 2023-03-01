@@ -5,12 +5,15 @@ export function useAuthData() {
   const authStore = useAuthStore()
 
   const isAuthorized = computed(() => authStore.isAuthorized)
+  const username = computed(() => authStore.username)
 
-  const { signIn, checkAuthState } = authStore
+  const { signIn, getMe, checkAuthState } = authStore
 
   return {
     isAuthorized,
+    username,
     signIn,
+    getMe,
     checkAuthState,
   }
 }

@@ -1,13 +1,17 @@
-// import { emitter } from '@/processes/event-bus'
+import { watch } from 'vue'
+
 import { useAuthData } from './auth-data'
 
 export function useAuthProcess() {
-  const { checkAuthState } = useAuthData()
+  const { isAuthorized, getMe } = useAuthData()
 
-  checkAuthState()
-
-  // emitter.on('error401', () => {
-  //   console.warn('Error 401. Need to check auth state!')
-  //   checkAuthState()
-  // })
+  watch(isAuthorized, async (value) => {
+    if (value) {
+      try {
+        await getMe()
+      } catch (err) {
+        console.error('Getting user info', err)
+      }
+    }
+  }, { immediate: true })
 }

@@ -15,8 +15,7 @@ export function getClient({ baseURL, timeout }: ClientParams): AxiosInstance {
     timeout,
   })
 
-  // const notRetriableUrls = ['token/refresh/', 'auth/users/']
-  const notRetriableUrls = ['token/refresh/']
+  const notRetriableUrls = ['token/']
 
   function checkIsRetriableUrl(url: string | undefined): boolean {
     if (!url) {
@@ -39,13 +38,10 @@ export function getClient({ baseURL, timeout }: ClientParams): AxiosInstance {
   }, (error) => Promise.reject(error))
 
   instance.interceptors.response.use((response) => response, async (error) => {
-    console.log('response.use')
     const originalConfig = error.config
 
     const isRetriableUrl = checkIsRetriableUrl(error.request?.responseURL)
     const isError401 = error.response?.status === 401
-
-    console.log('isRetriableUrl', isRetriableUrl)
 
     if (isRetriableUrl && isError401 && !originalConfig._retry) {
       originalConfig._retry = true
@@ -53,7 +49,7 @@ export function getClient({ baseURL, timeout }: ClientParams): AxiosInstance {
       const authStore = useAuthStore()
 
       try {
-        await authStore.checkAuthState()
+        await authStore.refreshTokenPair()
 
         return instance(originalConfig)
       } catch (err) {
@@ -61,7 +57,7 @@ export function getClient({ baseURL, timeout }: ClientParams): AxiosInstance {
       }
     }
 
-    Promise.reject(error)
+    return Promise.reject(error)
   })
 
   return instance

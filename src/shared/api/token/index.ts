@@ -22,7 +22,7 @@ class TokenApi extends CoreBackendApiV1 {
 
   async refresh(refreshToken: string) {
     try {
-      const res = await this.client.post<TokenPair>('refresh/', { refresh: refreshToken });
+      const res = await this.client.post<TokenPair>('refresh/', { refresh: refreshToken })
       
       return res.data
     } catch (err) {

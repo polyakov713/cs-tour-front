@@ -7,7 +7,7 @@ import { useAuthData } from '@/processes/auth'
 
 const router = useRouter()
 
-const { isAuthorized } = useAuthData()
+const { isAuthorized, username } = useAuthData()
 
 function goToSignIn() {
   router.push({ name: 'sign-in' })
@@ -22,7 +22,7 @@ function goToSignIn() {
       </router-link>
     </div>
     <div class="header__right">
-      <span v-if="isAuthorized">username</span>
+      <span v-if="isAuthorized">{{ username }}</span>
       <AppButton
         v-else
         @click="goToSignIn"
